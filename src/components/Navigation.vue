@@ -1,0 +1,18 @@
+<template>
+	<nav id='navigation'>
+		<router-link to='/' exact>Home</router-link> |
+		<router-link to='/request/list'>Request List</router-link>
+	</nav>
+</template>
+
+<script>
+	export default {
+		name: 'navigation'
+	}
+</script>
+
+<style lang='scss' scoped>
+	nav {
+		text-align: center;
+	}
+</style>

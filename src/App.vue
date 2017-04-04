@@ -1,23 +1,58 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
-  </div>
+	<div id='app'>
+		<Navigation/>
+		<router-view></router-view>
+	</div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+	import Navigation from '@/components/Navigation'
+
+	export default {
+		name: 'app',
+		components: {
+			Navigation
+		}
+	}
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang='scss'>
+	html {
+		box-sizing: border-box;
+	}
+
+	*, *:before, *:after {
+		box-sizing: inherit;
+	}
+
+	body {
+		font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+		color: #444;
+	}
+
+	a,
+	a:hover,
+	a:active,
+	a:visited,
+	a:focus,
+	a:visited:hover {
+		color: #778899;
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-bottom .15s ease-in-out;
+	}
+
+	a:hover,
+	a:visited:hover {
+		border-bottom: 1px solid #778899;
+	}
+
+	a.router-link-active {
+		cursor: default;
+
+		&:hover,
+		&:visited:hover {
+			border-bottom: 1px solid transparent;
+		}
+	}
 </style>
