@@ -1,5 +1,5 @@
 <template>
-	<div id='requestList'>
+	<div id='mockList'>
 		<h1>Requests</h1>
 		<div class='listCount'>Count: {{ items.length }}</div>
 		<ul>
@@ -7,7 +7,13 @@
 					v-for='item in items'
 					@click='clickItem'
 			>
-				{{ item.method }}: {{ item.requestUri }} <span class='additionalInfo'>{{ item.webservice }} - {{ item.webserviceHeader }}</span>
+				<input
+					type='checkbox'
+					v-model='item.enabled'
+					@click='toggleItem'
+				> {{ item.name }}<br/>
+				{{ item.request.method }}: {{ item.request.uri }} <span class='additionalInfo'>{{ item.request.webservice }} - {{ item.request.webserviceHeader }}</span><br/>
+				{{ item.description }}
 			</li>
 		</ul>
 	</div>
@@ -15,26 +21,24 @@
 
 <script>
 	export default {
-		name: 'requestList',
+		name: 'mockList',
 		mounted () {
 			this.load()
 		},
 		methods: {
 			load () {
-				this.$http.get('http://192.168.49.13:8001/api/requests').then((response) => {
+				this.$http.get('http://192.168.49.13:8001/api/mocks').then((response) => {
 					let items = response.body
 
 					items.forEach((item) => {
-						item.webservice = ''
 						try {
-							item.webservice = item.requestBody.match(/<soap:Body><ns.:(\w*)/)[1]
+							item.request.webservice = item.request.body.match(/<soap:Body><ns.:(\w*)/)[1]
 						} catch (e) {
-							// Do nothing here
+							item.request.webservice = ''
 						}
 
-						item.webserviceHeader = ''
 						try {
-							let webserviceHeaderFragment = item.requestBody.match(/<.{0,4}header>(.*?)<\/.{0,4}header>/)[1]
+							let webserviceHeaderFragment = item.request.body.match(/<.{0,4}header>(.*?)<\/.{0,4}header>/)[1]
 							let webserviceHeaderFragments = webserviceHeaderFragment.match(/<ns.:(.*?)>(.*?)<\/ns.:.*?>/g)
 
 							let fragmentParts
@@ -47,16 +51,20 @@
 								}
 							})
 
-							item.webserviceHeader = webserviceHeaderParts.join(' | ')
+							item.request.webserviceHeader = webserviceHeaderParts.join(' | ')
 						} catch (e) {
-							// Do nothing here
+							item.request.webserviceHeader = ''
 						}
 					})
 
 					this.items = items
 				}, (response) => {
-					window.console.error('Requests failed to load', response)
+					window.console.error('Mocks failed to load', response)
 				})
+			},
+			toggleItem (event) {
+				window.console.info('toggle item', event.target)
+				window.console.info('checked?', this)
 			},
 			clickItem (event) {
 				window.console.info('item clicked')

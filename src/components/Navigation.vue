@@ -1,7 +1,8 @@
 <template>
 	<nav id='navigation'>
 		<router-link to='/' exact>Home</router-link> |
-		<router-link to='/request/list'>Request List</router-link>
+		<router-link to='/request/list'>Request List</router-link> |
+		<router-link to='/mock/list'>Mock List</router-link>
 	</nav>
 </template>
 
