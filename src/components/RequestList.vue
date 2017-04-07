@@ -1,21 +1,30 @@
 <template>
 	<div id='requestList'>
-		<h1>Requests</h1>
-		<div class='listCount'>Count: {{ items.length }}</div>
-		<ul>
-			<li
-					v-for='item in items'
-					@click='clickItem'
+		<Headline text='Requests'></Headline>
+
+		<List :items='items'>
+			<ListItem
+				v-for='item in items'
+				@click='clickItem'
 			>
 				{{ item.method }}: {{ item.requestUri }} <span class='additionalInfo'>{{ item.webservice }} - {{ item.webserviceHeader }}</span>
-			</li>
-		</ul>
+			</ListItem>
+		</List>
 	</div>
 </template>
 
 <script>
+	import Headline from '@/components/Headline'
+	import List from '@/components/List'
+	import ListItem from '@/components/ListItem'
+
 	export default {
 		name: 'requestList',
+		components: {
+			Headline,
+			List,
+			ListItem
+		},
 		mounted () {
 			this.load()
 		},
@@ -71,38 +80,5 @@
 </script>
 
 <style lang='scss' scoped>
-	h1 {
-		text-transform: uppercase;
-		text-align: center;
-	}
 
-	ul {
-		margin: 0;
-		padding: 0;
-	}
-
-	li {
-		list-style: none;
-		background: #f4f4f4;
-		border: 1px solid #eee;
-		padding: 12px 15px 10px;
-		transition: background .15s ease-in-out;
-
-		&:hover {
-			background: #f0f0f0;
-		}
-
-		&:nth-child(even) {
-			background: #fbfbfb;
-
-			&:hover {
-				background: #f0f0f0;
-			}
-		}
-	}
-
-	.additionalInfo {
-		color: #aaa;
-		font-style: italic;
-	}
 </style>

@@ -1,7 +1,7 @@
 <template>
 	<div id='app'>
 		<Navigation/>
-		<router-view></router-view>
+		<router-view class='view'></router-view>
 	</div>
 </template>
 
@@ -26,8 +26,12 @@
 	}
 
 	body {
+		margin: 0;
 		font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+		font-size: 18px;
+		line-height: 25px;
 		color: #444;
+		background-color: #f0f1f3;
 	}
 
 	a,
@@ -39,7 +43,7 @@
 		color: #778899;
 		text-decoration: none;
 		border-bottom: 1px solid transparent;
-		transition: border-bottom .15s ease-in-out;
+		transition: border-bottom .2s ease-in-out;
 	}
 
 	a:hover,
@@ -54,5 +58,9 @@
 		&:visited:hover {
 			border-bottom: 1px solid transparent;
 		}
+	}
+
+	.view {
+		margin: 20px;
 	}
 </style>

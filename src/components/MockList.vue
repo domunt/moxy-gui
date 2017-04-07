@@ -1,27 +1,41 @@
 <template>
 	<div id='mockList'>
-		<h1>Requests</h1>
-		<div class='listCount'>Count: {{ items.length }}</div>
-		<ul>
-			<li
-					v-for='item in items'
-					@click='clickItem'
+		<Headline text='Mocks'/>
+
+		<List :items='items'>
+			<ListItem
+				v-for='item in items'
+				@click='clickItem'
 			>
-				<input
-					type='checkbox'
-					v-model='item.enabled'
-					@click='toggleItem'
-				> {{ item.name }}<br/>
-				{{ item.request.method }}: {{ item.request.uri }} <span class='additionalInfo'>{{ item.request.webservice }} - {{ item.request.webserviceHeader }}</span><br/>
-				{{ item.description }}
-			</li>
-		</ul>
+				<div class='col col1'>
+					<input
+						type='checkbox'
+						v-model='item.enabled'
+						@click='toggleItem'
+					>
+				</div>
+				<div class='col col2'>
+					{{ item.name }}<br/>
+					{{ item.request.method }}: {{ item.request.uri }} <span class='additionalInfo'>{{ item.request.webservice }} - {{ item.request.webserviceHeader }}</span><br/>
+					{{ item.description }}
+				</div>
+			</ListItem>
+		</List>
 	</div>
 </template>
 
 <script>
+	import Headline from '@/components/Headline'
+	import List from '@/components/List'
+	import ListItem from '@/components/ListItem'
+
 	export default {
 		name: 'mockList',
+		components: {
+			Headline,
+			List,
+			ListItem
+		},
 		mounted () {
 			this.load()
 		},
@@ -79,38 +93,22 @@
 </script>
 
 <style lang='scss' scoped>
-	h1 {
-		text-transform: uppercase;
-		text-align: center;
+	.col {
+		display: table-cell;
+		position: relative;
 	}
 
-	ul {
-		margin: 0;
-		padding: 0;
-	}
+	.col1 {
+		width: 35px;
 
-	li {
-		list-style: none;
-		background: #f4f4f4;
-		border: 1px solid #eee;
-		padding: 12px 15px 10px;
-		transition: background .15s ease-in-out;
-
-		&:hover {
-			background: #f0f0f0;
-		}
-
-		&:nth-child(even) {
-			background: #fbfbfb;
-
-			&:hover {
-				background: #f0f0f0;
-			}
+		input {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translateY(-50%);
 		}
 	}
 
-	.additionalInfo {
-		color: #aaa;
-		font-style: italic;
+	.col2 {
 	}
 </style>

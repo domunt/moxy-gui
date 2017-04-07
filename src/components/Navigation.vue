@@ -14,6 +14,9 @@
 
 <style lang='scss' scoped>
 	nav {
+		margin: 20px 0;
 		text-align: center;
+		height: 50px;
+		line-height: 50px;
 	}
 </style>
