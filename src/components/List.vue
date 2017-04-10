@@ -3,7 +3,7 @@
 		<div class='count'>Count: {{ items.length }}</div>
 		<ul>
 			<slot>
-				The list is currently empty
+				<li class='emptyList'>The list is currently empty</li>
 			</slot>
 		</ul>
 		<div class='count'>Count: {{ items.length }}</div>
@@ -19,13 +19,13 @@
 	}
 </script>
 
-<style type="scss" scoped>
+<style lang="scss" scoped>
 	.count {
 		margin: 10px 21px 8px;
 	}
 
-	ul {
-		margin: 0;
-		padding: 0;
+	.emptyList {
+		margin: 20px 0;
+		text-align: center;
 	}
 </style>

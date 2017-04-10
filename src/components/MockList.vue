@@ -7,17 +7,17 @@
 				v-for='item in items'
 				@click='clickItem'
 			>
-				<div class='col col1'>
+				<div class='checkboxCol'>
 					<input
 						type='checkbox'
 						v-model='item.enabled'
 						@click='toggleItem'
 					>
 				</div>
-				<div class='col col2'>
-					{{ item.name }}<br/>
-					{{ item.request.method }}: {{ item.request.uri }} <span class='additionalInfo'>{{ item.request.webservice }} - {{ item.request.webserviceHeader }}</span><br/>
-					{{ item.description }}
+				<div>
+					<p>{{ item.name }}</p>
+					<p>{{ item.description }}</p>
+					<p>{{ item.request.method }}: {{ item.request.uri }} <span class='additionalInfo'>{{ item.request.webservice }} - {{ item.request.webserviceHeader }}</span></p>
 				</div>
 			</ListItem>
 		</List>
@@ -93,12 +93,8 @@
 </script>
 
 <style lang='scss' scoped>
-	.col {
-		display: table-cell;
+	.checkboxCol {
 		position: relative;
-	}
-
-	.col1 {
 		width: 35px;
 
 		input {
@@ -107,8 +103,5 @@
 			left: 0;
 			transform: translateY(-50%);
 		}
-	}
-
-	.col2 {
 	}
 </style>

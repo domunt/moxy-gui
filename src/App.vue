@@ -17,6 +17,8 @@
 </script>
 
 <style lang='scss'>
+	@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 	html {
 		box-sizing: border-box;
 	}
@@ -25,9 +27,29 @@
 		box-sizing: inherit;
 	}
 
-	body {
+	body,
+	p,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	ul,
+	input {
 		margin: 0;
-		font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	}
+
+	ul {
+		padding: 0;
+	}
+
+	li {
+		list-style: none;
+	}
+
+	body {
+		font-family: 'Roboto', sans-serif;
 		font-size: 18px;
 		line-height: 25px;
 		color: #444;
