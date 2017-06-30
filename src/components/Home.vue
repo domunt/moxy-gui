@@ -1,12 +1,17 @@
 <template>
 	<div id='home'>
-		<h1>Home</h1>
+		<Headline text='Home'></Headline>
 	</div>
 </template>
 
 <script>
+	import Headline from '@/components/Headline'
+
 	export default {
-		name: 'home'
+		name: 'home',
+		components: {
+			Headline
+		}
 	}
 </script>
 
